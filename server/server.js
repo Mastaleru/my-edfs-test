@@ -1,8 +1,6 @@
 process.env.NO_LOGS = true;
 require("../psknode/bundles/pskruntime");
-require("../psknode/bundles/psknode");
 require("../psknode/bundles/virtualMQ");
-require("edfs-brick-storage");
 
 let PORT = 9091;
 const tempFolder = "./tmp";

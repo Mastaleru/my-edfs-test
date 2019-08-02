@@ -155,12 +155,10 @@ function Archive(archiveConfigurator, mapDigest) { //configObj
                 if (typeof file !== "undefined") {
                     const splitFolderPath = folderPath.split(path.sep);
                     splitFolderPath.pop();
-                    console.log("read");
                     readFileAsBlocks(splitFolderPath.join(path.sep), file, archiveConfigurator.getBufferSize(), barMap, (err) => {
                         if (err) {
                             return callback(err);
                         }
-                        console.log("raf")
                         diskAdapter.getNextFile(folderPath, __readFileCb);
                     });
                 } else {
@@ -5845,6 +5843,11 @@ $$.remote.doHttpPost = function (url, data, callback){
         console.log("POST Error", error);
 		callback(error);
 	});
+
+    req.setTimeout(1000);
+    req.on("timeout",(e)=>{
+        return callback(null, "");
+    });
 
     if(data && data.pipe && typeof data.pipe === "function"){
         data.pipe(req);
