@@ -3857,7 +3857,7 @@ require("../flows/BricksManager");
 function EDFSMiddleware(server) {
 
     server.post('/:fileId', (req, res) => {
-        $$.flow.start("BricksManager").write(req.params.fileId, req, (err, result) => {
+        $$.flow.start("BricksManager").writeWithHash(req.params.fileId, req, (err, result) => {
             res.statusCode = 201;
             if (err) {
                 res.statusCode = 500;
@@ -5844,10 +5844,10 @@ $$.remote.doHttpPost = function (url, data, callback){
 		callback(error);
 	});
 
-    req.setTimeout(1000);
+    /*req.setTimeout(1000);
     req.on("timeout",(e)=>{
         return callback(null, "");
-    });
+    });*/
 
     if(data && data.pipe && typeof data.pipe === "function"){
         data.pipe(req);

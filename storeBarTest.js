@@ -31,7 +31,7 @@ assert.callback("StoreBarInEDFSTest", (callback) => {
         utils.computeFoldersHashes([folderPath], (err, initialHashes) => {
             assert.true(err === null || typeof err === "undefined", "Received error");
                 console.log(initialHashes);
-                archiveConfigurator.setStorageProvider("EDFSBrickStorage", "http://192.168.103.149:9091");
+                archiveConfigurator.setStorageProvider("EDFSBrickStorage", "http://localhost:9091");
                 const archive = new bar.Archive(archiveConfigurator);
                 archive.addFolder(folderPath, (err, mapDigest) => {
                     console.log("Folder Added");
